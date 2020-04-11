@@ -1,0 +1,381 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="utf-8">
+  <title>particles.js</title>
+  <meta name="description" content="particles.js is a lightweight JavaScript library for creating particles.">
+  <meta name="author" content="Vincent Garreau" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0, minimum-scale=1.0, maximum-scale=1.0, user-scalable=no">
+  <link rel="stylesheet" media="screen" href="css/style.css">
+  <link href="https://fonts.googleapis.com/css2?family=Nunito:wght@700&display=swap" rel="stylesheet">
+  <link href="https://fonts.googleapis.com/css?family=Share+Tech+Mono" rel="stylesheet">
+  <link rel="stylesheet" type="text/css" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
+  <link href="https://fonts.googleapis.com/css2?family=Pacifico&display=swap" rel="stylesheet">
+</head>
+<style type="text/css">
+  @media screen and (max-width: 900px), screen and (max-height: 700px){
+    .square{
+    font-size: 50px;
+    padding: 10px 20px;
+    }
+    .selamat{
+      font-size: 15px;
+      top: 43.9%;
+      left: 50%;
+      text-align: center;
+    }
+    .quotes{
+      font-size: 15pt;
+      left: 50%;
+      bottom: 18%;
+      width: 250px;
+    }
+  }
+  @media only screen and (min-width: 768px) {
+  /* For desktop: */
+    .square{
+      font-size: 90px;
+      padding: 30px 60px;
+      }
+    .selamat{
+      font-size: 30px;
+      top: 50%;
+      left: 50%;
+      text-align: center;
+    }
+    .quotes{
+      font-size: 20pt;
+      left: 50%;
+      bottom: 10%;
+    }
+  }
+  .square{
+    position: absolute;
+    top: 35%;
+    left: 50%;
+    transform: translate(-50%,-50%);
+    color: #1670f0;
+    
+    letter-spacing: 2px;
+    text-transform: uppercase;
+    text-decoration: none;
+    box-shadow: 0 20px 50px rgba(0,0,0,.5);
+    font-family: 'Share Tech Mono','Nunito', sans-serif;
+    color: #daf6ff;
+      text-shadow: 0 0 25px rgba(50, 18, 208, 1.5),  0 0 25px rgba(50, 18, 208, 0);
+      overflow: hidden;
+  }
+  .square:before
+  {
+    content: '';
+    position: absolute;
+    top:2px;
+    left:2px;
+    bottom: 2px;
+    width: 50%;
+    background: rgba(255,255,255,0.1);
+  }
+  .square span:nth-child(1)
+  {
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 2px;
+    background:linear-gradient(to right, #0c002b, #1779ff);
+    animation : animate1 1s linear infinite;
+  }
+  @keyframes animate1
+  {
+    0%
+    {
+      transform: translateX(-100%);
+    }
+    100%
+    {
+      transform: translateX(100%);
+    }
+  }
+  .square span:nth-child(2)
+  {
+    position: absolute;
+    top: 0;
+    right: 0;
+    width: 2px;
+    height: 100%;
+    background:linear-gradient(to bottom, #0c002b, #1779ff);
+    animation : animate2 1s linear infinite;
+    animation-delay: 1s;
+  }
+  @keyframes animate2
+  {
+    0%
+    {
+      transform: translateY(-100%);
+    }
+    100%
+    {
+      transform: translateY(100%);
+    }
+  }
+  .square span:nth-child(3)
+  {
+    position: absolute;
+    bottom: 0;
+    left: 0;
+    width: 100%;
+    height: 2px;
+    background:linear-gradient(to left, #0c002b, #1779ff);
+    animation : animate3 1s linear infinite;
+  }
+  @keyframes animate3
+  {
+    0%
+    {
+      transform: translateX(100%);
+    }
+    100%
+    {
+      transform: translateX(-100%);
+    }
+  }
+  .square span:nth-child(4)
+  {
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 2px;
+    height: 100%;
+    background:linear-gradient(to top, #0c002b, #1779ff);
+    animation : animate4 1s linear infinite;
+    animation-delay: 1s;
+  }
+  @keyframes animate4
+  {
+    0%
+    {
+      transform: translateY(100%);
+    }
+    100%
+    {
+      transform: translateY(-100%);
+    }
+  }
+  .selamat
+  {
+    position: absolute;
+    
+    transform: translate(-50%,-40%);
+
+    font-family: 'Nunito', sans-serif;
+    color: #daf6ff;
+      
+      overflow: hidden;
+  }
+
+	
+ /* .chatme
+  {
+  	position: absolute;
+  	bottom: 10%;
+  	left: 50%;
+  	transform: translate(-50%,-50%);
+  	border: solid;
+  	color: white;
+  	width: 30px;
+  }*/	
+    .float{
+      position:fixed;
+      width:60px;
+      height:60px;
+      bottom:40px;
+      right:40px;
+      background-color:#25d366;
+      color:#FFF;
+      border-radius:50px;
+      text-align:center;
+      font-size:30px;
+      box-shadow: 2px 2px 3px #999;
+      z-index:100;
+    }
+
+    .my-float{
+      margin-top:16px;
+    }
+    .quotes{
+        position: absolute;
+        
+        transform: translate(-50%,0%);
+        text-align: center;
+        font-family: 'Pacifico', cursive;
+        color: #daf6ff;
+        
+        text-shadow: 0px 0px 10px #000;
+        z-index: 2;
+      }
+</style>
+<body>
+
+<!-- particles.js container -->
+
+  <div href="#" class="square">
+      <span></span>
+      <span></span>
+      <span></span>
+      <span></span>
+      <span class="clock">--:--:--</span>
+  </div>
+  <div class="selamat"></div>
+
+  <div class="chatme">
+	  <a href="https://api.whatsapp.com/send?phone=6282275858169" class="float" target="_blank">
+      <i class="fa fa-whatsapp my-float"></i>
+    </a>
+	  <!-- <span class="two">
+	    <i class="fa fa-facebook"></i>
+	  </span> -->
+  </div>
+  <div class="quotes">
+     <span
+     class="txt-rotate"
+     data-period="2000"
+     data-rotate='[ 
+     "every time i see you, i fall in love all over again.", 
+     "you cant blame gravity for falling love.", 
+     "if i know what love is, it is because of you.", 
+     "only in the darkness you can see the stars.", 
+     "dream without fear, love without limit ~" ]'></span>
+  </div>
+
+  <div id="particles-js"></div>
+
+
+<!-- scripts -->
+<script src="particlesjs/particles.js"></script>
+<script src="js/app.js"></script>
+
+<!-- stats.js -->
+
+<script>
+
+  function clock() {// We create a new Date object and assign it to a variable called "time".
+  var time = new Date(),
+      
+      // Access the "getHours" method on the Date object with the dot accessor.
+      hours = time.getHours(),
+      
+      // Access the "getMinutes" method with the dot accessor.
+      minutes = time.getMinutes(),
+      
+      
+      seconds = time.getSeconds();
+
+
+  document.querySelectorAll('.clock')[0].innerHTML = harold(hours) + ":" + harold(minutes) + ":" + harold(seconds);
+    
+    function harold(standIn) {
+      if (standIn < 10) {
+        standIn = '0' + standIn
+      }
+      return standIn;
+    }
+
+    if (hours < 6 && hours > 4) {
+      document.querySelectorAll('.selamat')[0].innerHTML = "Selamat pagii sayang <br/> baru bangun ya? ayoo sholat subuh duluu";
+    } 
+    else if (hours < 10 && hours > 4) {
+      document.querySelectorAll('.selamat')[0].innerHTML = "Selamat pagi bii <br/> jangan lupa sarapan yah! ";
+    } 
+    else if (hours < 12 && hours > 4) {
+      document.querySelectorAll('.selamat')[0].innerHTML = "Selamat menjalani hari bi <br/> semoga harinya kamu menyenangkan";
+    } 
+    else if (hours < 15 && hours > 4) {
+      document.querySelectorAll('.selamat')[0].innerHTML = "Selamat siang bii <br/> jangan lupa makan dan sholat dzuhur yaa";
+    } 
+    else if (hours < 16 && hours > 4) {
+      document.querySelectorAll('.selamat')[0].innerHTML = "Selamat siang bii <br/> jangan lupa makan yaa";
+    } 
+    else if (hours < 18 && hours > 4) {
+      document.querySelectorAll('.selamat')[0].innerHTML = "Selamat sore sayang <br/> jangan lupa sholat ashar yaa";
+    } 
+    else if (hours < 19 && hours > 4) {
+      document.querySelectorAll('.selamat')[0].innerHTML = "Selamat sore sayang <br/> hayoo dah mandi belom? ";
+    } 
+    else if (hours < 20 && hours > 4) {
+      document.querySelectorAll('.selamat')[0].innerHTML = "Selamat malam bii <br/> ayoo sholat dulu terus makan ";
+    } 
+    else if (hours < 21 && hours > 4) {
+      document.querySelectorAll('.selamat')[0].innerHTML = "Selamat malam bii <br/> waktunya istirahat, ga lupa sholat isya kan? ";
+    } 
+    else if (hours < 22 && hours > 4) {
+      document.querySelectorAll('.selamat')[0].innerHTML = "Istirahat bii dah malem";
+    } 
+    else {
+      // document.querySelectorAll('.selamat')[0].innerHTML = "Selamat malam selamat a";
+      document.querySelectorAll('.selamat')[0].innerHTML = "Waktunya tidur bii, mimpi indah :)";
+    }
+  }
+
+  setInterval(clock, 1000);
+  //https://codepen.io/CheeseTurtle/pen/jzdgI
+
+var TxtRotate = function(el, toRotate, period) {
+  this.toRotate = toRotate;
+  this.el = el;
+  this.loopNum = 0;
+  this.period = parseInt(period, 10) || 2000;
+  this.txt = '';
+  this.tick();
+  this.isDeleting = false;
+};
+
+TxtRotate.prototype.tick = function() {
+  var i = this.loopNum % this.toRotate.length;
+  var fullTxt = this.toRotate[i];
+
+  if (this.isDeleting) {
+    this.txt = fullTxt.substring(0, this.txt.length - 1);
+  } else {
+    this.txt = fullTxt.substring(0, this.txt.length + 1);
+  }
+
+  this.el.innerHTML = '<span class="wrap">'+this.txt+'</span>';
+
+  var that = this;
+  var delta = 300 - Math.random() * 100;
+
+  if (this.isDeleting) { delta /= 2; }
+
+  if (!this.isDeleting && this.txt === fullTxt) {
+    delta = this.period;
+    this.isDeleting = true;
+  } else if (this.isDeleting && this.txt === '') {
+    this.isDeleting = false;
+    this.loopNum++;
+    delta = 500;
+  }
+
+  setTimeout(function() {
+    that.tick();
+  }, delta);
+};
+
+window.onload = function() {
+  var elements = document.getElementsByClassName('txt-rotate');
+  for (var i=0; i<elements.length; i++) {
+    var toRotate = elements[i].getAttribute('data-rotate');
+    var period = elements[i].getAttribute('data-period');
+    if (toRotate) {
+      new TxtRotate(elements[i], JSON.parse(toRotate), period);
+    }
+  }
+  // INJECT CSS
+  var css = document.createElement("style");
+  css.type = "text/css";
+  css.innerHTML = ".txt-rotate > .wrap { border-right: 0.08em solid #666 }";
+  document.body.appendChild(css);
+};
+</script>
+
+</body>
+</html>
